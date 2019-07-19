@@ -34,4 +34,14 @@ Style/Documentation:
 Style/MixinUsage:
   Description: 'Checks that `include`, `extend` and `prepend` exists at the top level.'
   Enabled: false
-  
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Exclude:
+    - "**/*_spec.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/*_spec.rb"

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'shoulda/matchers'
 require 'database_cleaner'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -48,7 +49,6 @@ RSpec.configure do |config|
 
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
-
   config.include ResponseHelper, type: :request
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
@@ -63,6 +63,8 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.include(Shoulda::Callback::Matchers::ActiveModel)
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
