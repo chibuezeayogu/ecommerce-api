@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Categories Endpoints', type: :request do
   describe 'Get /categories' do
     context 'when a user visits /categories endpoint with no records in db' do
-      it 'should return 404 error message' do
+      it 'should return 404 error hash' do
         get '/categories'
 
         expect(response).to be_a_not_found
@@ -19,7 +19,7 @@ RSpec.describe 'Categories Endpoints', type: :request do
     context 'when a user visits /categories endpoint with records in db' do
       let!(:categories) { create_list(:category, 3) }
 
-      it 'should return an array of categories' do
+      it 'should return an array of categories hashes' do
         get '/categories'
 
         expect(response).to be_successful
@@ -61,7 +61,7 @@ RSpec.describe 'Categories Endpoints', type: :request do
     context 'when a user visits /categories/:category_id endpoint with an invalid record id' do
       let(:invalid_category_id) { 's' }
 
-      it 'should return a array of category objects' do
+      it 'should return a 400 error hash' do
         get "/categories/#{invalid_category_id}"
 
         expect(response).to be_a_bad_request
@@ -75,7 +75,7 @@ RSpec.describe 'Categories Endpoints', type: :request do
 
   describe 'Get /categories/inProduct/:product_id' do
     context 'when a user visits /categories/inProduct/:product_id endpoint with no records' do
-      it 'should return a array of category objects' do
+      it 'should return a 404 error hash' do
         get '/categories/inProduct/1'
 
         expect(response).to be_a_not_found
@@ -89,7 +89,7 @@ RSpec.describe 'Categories Endpoints', type: :request do
     context 'when a user visits /categories/inProduct/:product_id endpoint with an invalid record id' do
       let(:invalid_product_id) { 's' }
 
-      it 'should return a array of category objects' do
+      it 'should return a array of category hashes' do
         get "/categories/inProduct/#{invalid_product_id}"
 
         expect(response).to be_a_bad_request
@@ -103,7 +103,7 @@ RSpec.describe 'Categories Endpoints', type: :request do
     context 'when a user visits /categories/inProduct/:product_id endpoint with record(s)' do
       let!(:product_category) { create_list(:product_category, 3) }
 
-      it 'should return an array of categories' do
+      it 'should return an array of categories hashes' do
         get "/categories/inProduct/#{product_category.first.product_id}"
 
         expect(response).to be_successful

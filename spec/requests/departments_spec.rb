@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Department Endpoints', type: :request do
   describe 'GET /departments' do
-    context 'when a user visits /departments with no records' do
-      it 'should return 404 error message' do
+    context 'when a user visits /departments with no records in the db' do
+      it 'should return 404 error hash' do
         get '/departments'
 
         expect(response).to be_a_not_found
@@ -16,13 +16,14 @@ RSpec.describe 'Department Endpoints', type: :request do
       end
     end
 
-    context 'when a user visits /departments' do
+    context 'when a user visits /departments with records in the db' do
       let!(:departments) { create_list(:department, 3) }
 
-      it 'should return an array of departments' do
+      it 'should return an array of departments hashes' do
         get '/departments'
 
         expect(response).to be_successful
+        expect(json).to_not be_empty
         expect(json.count).to eq departments.count
       end
     end
@@ -32,7 +33,7 @@ RSpec.describe 'Department Endpoints', type: :request do
     context 'when a user visits /departments/:department_id with an none existing record id' do
       let(:none_existing_department_id) { 5 }
 
-      it 'should return a 404 error message' do
+      it 'should return a 404 error hash' do
         get "/departments/#{none_existing_department_id}"
 
         expect(response).to be_a_not_found
@@ -46,7 +47,7 @@ RSpec.describe 'Department Endpoints', type: :request do
     context 'when a user visits /departments/:department_id with an invalid department_id' do
       let(:invalid_department_id) { 's' }
 
-      it 'should return a 400 error message' do
+      it 'should return a 400 error hash' do
         get "/departments/#{invalid_department_id}"
 
         expect(response).to be_a_bad_request
@@ -59,6 +60,7 @@ RSpec.describe 'Department Endpoints', type: :request do
 
     context 'when a user visits /departments/:department_id' do
       let!(:department) { create(:department) }
+
       it 'should return a department with that department id' do
         get "/departments/#{department.department_id}"
 

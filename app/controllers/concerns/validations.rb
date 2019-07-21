@@ -1,17 +1,15 @@
 # frozen_string_literal: true
 
-module Validation
+module Validations
   extend ActiveSupport::Concern
 
-  def params_validation(action, target_id, code)
+  def params_validation(target_id, code)
     if params[target_id].blank?
       @response = response_message("#{code}_01", "#{target_id} is required.", target_id.to_s, 400)
-      return json_response(action, :bad_request)
     end
 
     if params[target_id].to_i.zero?
-      @response = response_message("#{code}_01", "#{target_id} is not a number.", target_id.to_s, 400)
-      return json_response(action, :bad_request)
+      @response ||= response_message("#{code}_01", "#{target_id} is not a number.", target_id.to_s, 400)
     end
   end
 

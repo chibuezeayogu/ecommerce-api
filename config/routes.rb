@@ -12,4 +12,10 @@ Rails.application.routes.draw do
     get '/inDepartment/:department_id', to: 'categories#in_department'
     get '/:category_id', to: 'categories#show'
   end
+  scope path: :attributes, defaults: { format: :json } do
+    get '/', to: 'attributes#index'
+    get '/:attribute_id', to: 'attributes#show'
+    get '/values/:attribute_id', to: 'attributes#values'
+    get '/inProduct/:product_id', to: 'attributes#in_product'
+  end
 end
