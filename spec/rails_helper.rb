@@ -52,8 +52,8 @@ RSpec.configure do |config|
   config.include ResponseHelper, type: :request
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
+  config.before(:each) do
+    DatabaseCleaner.clean_with(:deletion)
     DatabaseCleaner.strategy = :transaction
   end
 
