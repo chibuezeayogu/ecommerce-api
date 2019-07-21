@@ -17,19 +17,10 @@ class DepartmentsController < ApplicationController
   private
 
   def set_department
-    params_validation(:set_department, :department_id, 'DEP')
+    params_validation(:department_id, 'DEP')
+    return json_response(:set_department, :bad_request) if @response&.any?
 
-    return if @response&.any?
-
-    @response = Department.find(params[:department_id])
-  rescue ActiveRecord::RecordNotFound
-    @response = response_message(
-      'DEP_02',
-      "Department with department_id=#{params[:department_id]} does not exist.",
-      'department_id',
-      404
-    )
-    json_response(:set_department, :not_found)
+    get_record_by_id(Department, :set_department, :department_id, 'DEP')
   end
 
   def department_params

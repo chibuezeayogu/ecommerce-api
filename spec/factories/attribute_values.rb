@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :attribute_value do
-    attribute
+    association :feature, factory: :attribute
+    value { Faker::Lorem.word }
   end
 end

@@ -24,23 +24,15 @@ class CategoriesController < ApplicationController
   private
 
   def set_category
-    params_validation(:set_category, :category_id, 'CAT')
-    return if @response&.any?
+    params_validation(:category_id, 'CAT')
+    return json_response(:set_category, :bad_request) if @response&.any?
 
-    @response = Category.find(params[:category_id])
-  rescue ActiveRecord::RecordNotFound
-    @response = response_message(
-      'DEP_02',
-      "Category with category_id=#{params[:categoryt_id]} does not exist.",
-      'category_id',
-      404
-    )
-    json_response(:set_department, :not_found)
+    get_record_by_id(Category, :set_category, :category_id, 'CAT')
   end
 
   def set_department
-    params_validation(:set_product, :department_id, 'DEP')
-    return if @response&.any?
+    params_validation(:department_id, 'DEP')
+    return json_response(:set_department, :bad_request) if @response&.any?
 
     @response = Department.find(params[:department_id]).categories
   rescue ActiveRecord::RecordNotFound
@@ -54,8 +46,8 @@ class CategoriesController < ApplicationController
   end
 
   def set_product
-    params_validation(:set_product, :product_id, 'PRO')
-    return if @response&.any?
+    params_validation(:product_id, 'PRO')
+    return json_response(:set_product, :bad_request) if @response&.any?
 
     @response = Product.find(params[:product_id]).categories
   rescue ActiveRecord::RecordNotFound
