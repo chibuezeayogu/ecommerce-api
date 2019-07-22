@@ -6,6 +6,7 @@ AllCops:
     - 'vendor/**/*'
     - 'README.md'
     - 'Gemfile.lock'
+    - 'config/routes.rb'
 
 Metrics/LineLength:
   Max: 120

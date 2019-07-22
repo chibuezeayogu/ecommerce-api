@@ -18,4 +18,14 @@ Rails.application.routes.draw do
     get '/values/:attribute_id', to: 'attributes#values'
     get '/inProduct/:product_id', to: 'attributes#in_product'
   end
+  scope path: :products, defaults: { format: :json } do
+    get '/', to: 'products#index'
+    get '/:product_id', to: 'products#show'
+    get '/inCategory/:category_id', to: 'products#in_category'
+    get '/inDepartment/:department_id', to: 'products#in_department'
+    get '/:product_id/details', to: 'products#details'
+    get '/:product_id/locations', to: 'products#location'
+    get '/:product_id/reviews', to: 'products#reviews'
+    post '/:product_id/reviews', to: 'products#create_reviews'
+  end
 end

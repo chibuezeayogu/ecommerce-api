@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   self.table_name = 'product'
 
   has_many :product_categories
+  has_many :reviews
   has_many :categories, through: :product_categories
   has_many :product_attributes
   has_many :attribute_values, through: :product_attributes

@@ -43,7 +43,7 @@ RSpec.describe 'Attributes Endpoint' do
       end
     end
 
-    context 'when a user visits /attributes/:attribute_id with non existing attribute_id' do
+    context 'when a user visits /attributes/:attribute_id with none existing attribute_id' do
       let(:none_existing_attribute_id) { 5 }
 
       it 'should return a 404 error hash' do
