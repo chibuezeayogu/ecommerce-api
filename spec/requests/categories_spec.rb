@@ -35,7 +35,7 @@ RSpec.describe 'Categories Endpoints', type: :request do
     let!(:category) { create(:category) }
 
     context 'when a user visits /categories/:category_id endpoint' do
-      it 'should return a category object' do
+      it 'should return a category hash' do
         get "/categories/#{category.category_id}"
 
         expect(response).to be_successful
@@ -47,10 +47,10 @@ RSpec.describe 'Categories Endpoints', type: :request do
       end
     end
 
-    context 'when a user visits /categories with non existing category_id' do
+    context 'when a user visits /categories with none existing category_id' do
       let(:none_existing_category_id) { 5 }
 
-      it 'should return an array of categories' do
+      it 'should return a 404 error hash' do
         get "/categories/#{none_existing_category_id}"
 
         expect(response).to be_a_not_found
@@ -89,7 +89,7 @@ RSpec.describe 'Categories Endpoints', type: :request do
     context 'when a user visits /categories/inProduct/:product_id endpoint with an invalid record id' do
       let(:invalid_product_id) { 's' }
 
-      it 'should return a array of category hashes' do
+      it 'should return a 400 error hash' do
         get "/categories/inProduct/#{invalid_product_id}"
 
         expect(response).to be_a_bad_request
