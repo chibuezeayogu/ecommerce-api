@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_131436) do
+ActiveRecord::Schema.define(version: 2019_07_23_125838) do
 
   create_table "attribute", primary_key: "attribute_id", id: :integer, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", limit: 100, null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_131436) do
   create_table "order_detail", primary_key: "item_id", id: :integer, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "product_id", null: false
-    t.string "attributes", limit: 1000, null: false
+    t.string "features", limit: 1000, null: false
     t.string "product_name", limit: 100, null: false
     t.integer "quantity", null: false
     t.decimal "unit_cost", precision: 10, scale: 2, null: false
@@ -135,8 +135,8 @@ ActiveRecord::Schema.define(version: 2019_07_22_131436) do
     t.integer "product_id", null: false
     t.string "features", limit: 1000, null: false
     t.integer "quantity", null: false
-    t.boolean "buy_now", default: true, null: false
-    t.datetime "added_on", null: false
+    t.boolean "buy_now", default: false, null: false
+    t.datetime "added_on"
     t.index ["cart_id"], name: "idx_shopping_cart_cart_id"
   end
 
