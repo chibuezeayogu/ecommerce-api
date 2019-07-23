@@ -8,8 +8,6 @@ FactoryBot.define do
     status { 0 }
     comments { Faker::Lorem.sentence }
     customer
-    auth_code
-    reference
     shipping
     tax
   end

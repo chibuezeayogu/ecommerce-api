@@ -35,6 +35,12 @@ Rails.application.routes.draw do
     put '/address', to: 'customers#update_customer_info'
     put '/creditCard', to: 'customers#update_credit_card'
   end
+  scope path: :orders, defaults: { format: :json } do
+    post '/', to: 'orders#create'
+    get '/inCustomer', to: 'orders#show_customer_orders'
+    get '/:order_id', to: 'orders#show'
+    get '/showDetail/:order_id', to: 'orders#short_details'
+  end
 
   match "/404", :to => "errors#route_not_found", :via => :all
 end

@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
   def post_review
     @review = Review.new review_params
     @review.customer_id = @current_user.customer_id
-    
+
     if @review.save
       json_response(:post_review, :create)
     else
