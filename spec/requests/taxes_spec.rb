@@ -33,7 +33,7 @@ RSpec.describe 'Taxes Endpoint' do
     let!(:tax) { create(:tax) }
 
     context 'when a user visits /tax/tax_id endpoint' do
-      it 'should return a attribute hash' do
+      it 'should return a tax hash' do
         get "/tax/#{tax.tax_id}"
 
         expect(response).to be_successful
