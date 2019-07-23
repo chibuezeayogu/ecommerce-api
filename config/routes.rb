@@ -41,6 +41,10 @@ Rails.application.routes.draw do
     get '/:order_id', to: 'orders#show'
     get '/showDetail/:order_id', to: 'orders#short_details'
   end
+  scope path: :tax, defaults: { format: :json } do
+    get '/', to: 'taxes#index'
+    get '/:tax_id', to: 'taxes#show'
+  end
 
   match "/404", :to => "errors#route_not_found", :via => :all
 end
