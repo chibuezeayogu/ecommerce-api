@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   before_action :set_category, only: :in_category
   before_action :set_department, only: :in_department
   helper_method :product_offset, :product_limit, :description_length, :all_words
+  before_action :authenticate_request, only: :post_review
 
   def index
     @products = Product.all
@@ -35,7 +36,17 @@ class ProductsController < ApplicationController
     @location
   end
 
-  def create_review; end
+  def post_review
+    @review = Review.new review_params
+    @review.customer_id = @current_user.customer_id
+    
+    if @review.save
+      json_response(:post_review, :create)
+    else
+      fields = @review.errors.messages.keys
+      return @response = required_fields('REV_02', get_blank_fields(@review, fields)) if validate_empty_model_fields?(@review, fields)
+    end
+  end
 
   def reviews; end
 
@@ -73,6 +84,10 @@ class ProductsController < ApplicationController
       :query_string,
       :all_words
     )
+  end
+
+  def review_params
+    params.permit(:review, :rating, :product_id)
   end
 
   def order_column

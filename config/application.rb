@@ -50,5 +50,7 @@ module EcommerceApi
         resource '*', headers: :any, methods: %i[get patch put delete post options]
       end
     end
+
+    config.exceptions_app = routes
   end
 end

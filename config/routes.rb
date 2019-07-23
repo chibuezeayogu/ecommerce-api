@@ -26,6 +26,15 @@ Rails.application.routes.draw do
     get '/:product_id/details', to: 'products#details'
     get '/:product_id/locations', to: 'products#location'
     get '/:product_id/reviews', to: 'products#reviews'
-    post '/:product_id/reviews', to: 'products#create_reviews'
+    post '/:product_id/reviews', to: 'products#post_review'
   end
+  scope path: :customers, defaults: { format: :json } do
+    post '/', to: 'customers#create'
+    post '/login', to: 'customers#login'
+    post '/facebook', to: 'customers#facebook_login'
+    put '/address', to: 'customers#update_customer_info'
+    put '/creditCard', to: 'customers#update_credit_card'
+  end
+
+  match "/404", :to => "errors#route_not_found", :via => :all
 end
