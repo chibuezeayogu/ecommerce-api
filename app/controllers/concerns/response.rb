@@ -15,4 +15,22 @@ module Response
       fields: field
     }
   end
+
+  def required_fields(code, fields)
+    {
+      status: 400,
+      code: code,
+      message: 'The following field(s) are required',
+      fields: fields.join(', ')
+    }
+  end
+
+  def blank_fields(code, fields)
+    {
+      status: 400,
+      code: code,
+      message: 'The following field(s) cannot be blank',
+      fields: fields.join(', ')
+    }
+  end
 end

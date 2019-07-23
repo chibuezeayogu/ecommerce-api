@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_19_161833) do
+ActiveRecord::Schema.define(version: 2019_07_22_131436) do
 
   create_table "attribute", primary_key: "attribute_id", id: :integer, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", limit: 100, null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_07_19_161833) do
   create_table "customer", primary_key: "customer_id", id: :integer, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", limit: 50, null: false
     t.string "email", limit: 100, null: false
-    t.string "password", limit: 50, null: false
+    t.string "password_digest", limit: 100, null: false
     t.text "credit_card"
     t.string "address_1", limit: 100
     t.string "address_2", limit: 100

@@ -5,15 +5,21 @@ FactoryBot.define do
     name { Faker::Name.name }
     email { Faker::Internet.email }
     password { 'password' }
-    address_1 { Faker::Address.full_address }
-    address_2 { Faker::Address.full_address }
-    credit_card { Faker::Business.credit_card_number }
-    region { Faker::Lorem.word }
-    postal_code { Faker::Address.postcode }
-    city { Faker::Nation.capital_city }
     shipping_region
-    day_phone { Faker::PhoneNumber.cell_phone }
-    eve_phone { Faker::PhoneNumber.cell_phone }
-    mob_phone { Faker::PhoneNumber.cell_phone }
+
+    trait :with_credit_card do
+      credit_card { 555_555_555_555_444 }
+    end
+
+    trait :with_address do
+      address_1 { Faker::Address.full_address }
+      address_2 { Faker::Address.full_address }
+      region { Faker::Lorem.word }
+      postal_code { 224 }
+      city { Faker::Nation.capital_city }
+      day_phone { '2347033497338' }
+      eve_phone { '2347033497338' }
+      mob_phone { '2347033497338' }
+    end
   end
 end
