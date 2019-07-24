@@ -49,6 +49,16 @@ Rails.application.routes.draw do
     get '/', to: 'shippings#index'
     get '/:shipping_region_id', to: 'shippings#show'
   end
+  scope path: :shoppingcart, defaults: { format: :json } do
+    get '/generateUniqueId', to: 'shopping_carts#generate_cart_id'
+    post '/add', to: 'shopping_carts#create'
+    get '/:cart_id', to: 'shopping_carts#show'
+    put '/update/:item_id', to: 'shopping_carts#update_cart'
+    get '/totalAmount/:cart_id', to: 'shopping_carts#total_amount'
+    get '/getSaved/:cart_id', to: 'shopping_carts#get_saved_cart'
+    delete '/empty/:cart_id', to: 'shopping_carts#delete_cart'
+    delete '/removeProduct/:item_id', to: 'shopping_carts#remove_product_from_cart'
+  end
 
   match "/404", :to => "errors#route_not_found", :via => :all
 end
