@@ -61,6 +61,10 @@ Rails.application.routes.draw do
     delete '/empty/:cart_id', to: 'shopping_carts#delete_cart'
     delete '/removeProduct/:item_id', to: 'shopping_carts#remove_product_from_cart'
   end
+  scope path: 'stripe', defaults: { format: :json } do
+    post '/charge', to: 'stripe#charge'
+    post '/webhooks', to: 'stripe#webhooks'
+  end
 
   match "/404", :to => "errors#route_not_found", :via => :all
 end
