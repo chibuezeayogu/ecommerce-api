@@ -37,9 +37,11 @@ gem 'composite_primary_keys', '=11.0.0'
 
 gem 'credit_card_validations'
 gem 'jwt'
+gem 'ngrok-tunnel'
 gem 'phonelib'
 gem 'stripe'
 gem 'telephone_number'
+gem 'tty-box'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -35,7 +35,9 @@ class StripeController < ApplicationController
     end
   end
 
-  def webhooks; end
+  def webhooks
+    json_response(:webhooks)
+  end
 
   private
 
