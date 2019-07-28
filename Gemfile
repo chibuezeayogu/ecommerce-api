@@ -40,6 +40,8 @@ gem 'jwt'
 gem 'phonelib'
 gem 'stripe'
 gem 'telephone_number'
+gem 'ngrok-tunnel'
+gem 'tty-box'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

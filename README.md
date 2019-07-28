@@ -14,6 +14,12 @@ This web application is written with Ruby using the Ruby on Rails framework and 
 brew install mysql
 ```
 
+# Project Architecture
+- This project was built using the Rails MVC architecture
+* `Model`: Maintains the relationship between Object and Database and handles validation, association, transactions
+* `View`: Maintains the relationship between Object and Database and handles validation, association, transactions
+* `Controller`: The facility within the application that directs traffic, on the one hand querying the models for specific data, and on the other hand organizing that data (searching, sorting) into a form that fits the needs of a given view.
+
 # Applicaton Features
 * Users can view all items when entering the website.
 * Items are displayed properly based on the selected department and category.
@@ -46,6 +52,7 @@ Please make sure you have **Ruby(v 2.5.3) and MySQL** installed. Take the follow
     ```bash
     rails db:schema:load
     ```
+
 # Tests
 * Run test with `rspec`
 
