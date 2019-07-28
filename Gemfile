@@ -37,10 +37,10 @@ gem 'composite_primary_keys', '=11.0.0'
 
 gem 'credit_card_validations'
 gem 'jwt'
+gem 'ngrok-tunnel'
 gem 'phonelib'
 gem 'stripe'
 gem 'telephone_number'
-gem 'ngrok-tunnel'
 gem 'tty-box'
 
 group :development, :test do
