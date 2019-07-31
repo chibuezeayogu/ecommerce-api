@@ -41,6 +41,8 @@ Please make sure you have **Ruby(v 2.5.3) and MySQL** installed. Take the follow
 * Run `git clone https://github.com/chibuezeayogu/Ecommerce-API.git` to clone this repository
 * Run the command `cd Ecommerce-API` to checkout into `Ecommerce-API`.
 * Run `bundle install` to install all required gems
+* create a file `master.key` inside `config` folder and past your secret key
+* create a .env file in the root directory and add your `STRIPE_API_KEY` as shown in `.env.sample`
 
 # Configuring the database
 * To create application database, run:
