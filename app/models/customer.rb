@@ -3,14 +3,16 @@
 class Customer < ApplicationRecord
   self.table_name = 'customer'
 
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :validatable
+
   belongs_to :shipping_region
   has_many :reviews
   has_many :orders
 
-  has_secure_password
-  # alias_attribute :password, :password_digest
-
-  validates :name, :password, presence: true
+  validates :name, :encrypted_password, presence: true
   validates :address_1, presence: true, allow_blank: true
   validates :city, presence: true, allow_blank: true
   validates :region, presence: true, allow_blank: true

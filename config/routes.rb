@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
   scope path: :products, defaults: { format: :json } do
     get '/', to: 'products#index'
+    get '/search', to: 'products#search'
     get '/:product_id', to: 'products#show'
     get '/inCategory/:category_id', to: 'products#in_category'
     get '/inDepartment/:department_id', to: 'products#in_department'
@@ -37,6 +38,11 @@ Rails.application.routes.draw do
     put '/address', to: 'customers#update_customer_info'
     put '/creditCard', to: 'customers#update_credit_card'
   end
+  scope path: :customer, defaults: { format: :json } do
+    get '/', to: 'customers#show'
+    put '/', to: 'customers#update'
+  end
+  
   scope path: :orders, defaults: { format: :json } do
     post '/', to: 'orders#create'
     get '/inCustomer', to: 'orders#show_customer_orders'
