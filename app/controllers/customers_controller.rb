@@ -36,7 +36,7 @@ class CustomersController < ApplicationController
   end
 
   def login
-    if @customer&.authenticate(params[:password])
+    if @customer&.valid_password?(params[:password])
       @token = JsonWebToken.encode(id: @customer.customer_id, email: @customer.email)
       json_response(:login, :ok)
     else

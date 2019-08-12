@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show details location reviews]
   before_action :set_category, only: :in_category
   before_action :set_department, only: :in_department
+  before_action :set_query_string, only: :search
   helper_method :product_offset, :product_limit, :description_length, :all_words
   before_action :authenticate_request, only: :post_review
 
@@ -50,6 +51,12 @@ class ProductsController < ApplicationController
 
   def reviews; end
 
+  def search
+    @search_result = Product.search(params[:query_string])
+    status = :bad_request if @search_result.empty?
+    json_response(:search, status || :ok)
+  end
+
   private
 
   def set_product
@@ -71,6 +78,10 @@ class ProductsController < ApplicationController
     return json_response(:set_department, :bad_request) if @response&.any?
 
     get_record_by_column(Category, :set_department, :department_id, 'DEP')
+  end
+
+  def set_query_string
+    return json_response(:set_query_string, :bad_request) if params[:query_string].blank?
   end
 
   def product_params
