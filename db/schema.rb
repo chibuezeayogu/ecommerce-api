@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_11_022507) do
+ActiveRecord::Schema.define(version: 2019_08_12_045433) do
 
   create_table "attribute", primary_key: "attribute_id", id: :integer, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", limit: 100, null: false
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2019_08_11_022507) do
     t.string "day_phone", limit: 100
     t.string "eve_phone", limit: 100
     t.string "mob_phone", limit: 100
+    t.string "provider", limit: 50, default: "", null: false
+    t.string "uid", limit: 500, default: "", null: false
     t.index ["email"], name: "idx_customer_email", unique: true
     t.index ["shipping_region_id"], name: "idx_customer_shipping_region_id"
   end
@@ -117,6 +119,15 @@ ActiveRecord::Schema.define(version: 2019_08_11_022507) do
     t.datetime "created_on", null: false
     t.index ["customer_id"], name: "idx_review_customer_id"
     t.index ["product_id"], name: "idx_review_product_id"
+  end
+
+  create_table "sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
   create_table "shipping", primary_key: "shipping_id", id: :integer, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|

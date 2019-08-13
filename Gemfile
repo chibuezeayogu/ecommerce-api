@@ -35,10 +35,15 @@ gem 'rubocop-rails'
 
 gem 'composite_primary_keys', '=11.0.0'
 
+# Use ActiveRecord Sessions
+gem 'activerecord-session_store', '~> 1.0'
 gem 'credit_card_validations'
 gem 'devise'
 gem 'jwt'
 gem 'ngrok-tunnel'
+gem 'omniauth-facebook'
+# Use Omniauth Google plugin
+gem 'omniauth-google-oauth2'
 gem 'phonelib'
 gem 'stripe'
 gem 'telephone_number'

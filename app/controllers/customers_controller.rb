@@ -71,6 +71,14 @@ class CustomersController < ApplicationController
     json_response(:update_customer_info, status || :ok)
   end
 
+  def facebook
+    social_login(:facebook)
+  end
+
+  def google
+    social_login(:google)
+  end
+
   private
 
   def customer_params
@@ -172,5 +180,21 @@ class CustomersController < ApplicationController
       message: "There is no associated Shipping Region with ID #{id}",
       field: 'shipping_region_id'
     }
+  end
+
+  def social_login(action)
+    @customer = Customer.create_from_provider_data(request.env['omniauth.auth'])
+    if @customer.persisted?
+      @token = JsonWebToken.encode(id: @customer.customer_id, email: @customer.email)
+      json_response(action)
+    else
+      @response = response_message(
+        'USR_02',
+        'There was an error logging in. Try again later',
+        action.to_s,
+        400
+      )
+      json_response(action, :bad_request)
+    end
   end
 end

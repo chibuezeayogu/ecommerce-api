@@ -6,7 +6,7 @@ class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :validatable
+         :validatable, omniauth_providers: %i[facebook google_oauth2]
 
   belongs_to :shipping_region
   has_many :reviews
@@ -28,5 +28,13 @@ class Customer < ApplicationRecord
 
   def downcase_email
     self.email = email.downcase.strip if email.present?
+  end
+
+  def self.create_from_provider_data(provider_data)
+    where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |customer|
+      customer.email = provider_data.info.email
+      customer.name = provider_data.info.name
+      customer.password = Devise.friendly_token[0, 20]
+    end
   end
 end
