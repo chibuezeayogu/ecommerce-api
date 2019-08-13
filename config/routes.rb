@@ -34,7 +34,8 @@ Rails.application.routes.draw do
   scope path: :customers, defaults: { format: :json } do
     post '/', to: 'customers#create'
     post '/login', to: 'customers#login'
-    post '/facebook', to: 'customers#facebook_login'
+    post '/facebook', to: 'customers#facebook'
+    post '/google', to: 'customers#google'
     put '/address', to: 'customers#update_customer_info'
     put '/creditCard', to: 'customers#update_credit_card'
   end
