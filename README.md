@@ -38,8 +38,8 @@ brew install mysql
 # Installation
 Please make sure you have **Ruby(v 2.5.3) and MySQL** installed. Take the following steps to setup the application on your local machine:
 
-* Run `git clone https://github.com/chibuezeayogu/Ecommerce-API.git` to clone this repository
-* Run the command `cd Ecommerce-API` to checkout into `Ecommerce-API`.
+* Run `git clone https://github.com/chibuezeayogu/ecommerce-api.git` to clone this repository
+* Run the command `cd ecommerce-api` to checkout into `ecommerce-api`.
 * Run `bundle install` to install all required gems
 * create a file `master.key` inside `config` folder and past your secret key
 * create a .env file in the root directory and add your `STRIPE_API_KEY` as shown in `.env.sample`
@@ -59,4 +59,4 @@ Please make sure you have **Ruby(v 2.5.3) and MySQL** installed. Take the follow
 * Run test with `rspec`
 
 # Limitations
-* File-Transfer-App is still in development.
+* ecommerce-api is still in development.
