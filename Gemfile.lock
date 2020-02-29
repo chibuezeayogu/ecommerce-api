@@ -149,7 +149,7 @@ GEM
       equatable (~> 0.6)
       tty-color (~> 0.5)
     phonelib (0.6.36)
-    puma (3.12.1)
+    puma (3.12.3)
     rack (2.0.7)
     rack-cors (1.0.3)
     rack-test (1.1.0)
@@ -279,7 +279,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2
   phonelib
-  puma (~> 3.11)
+  puma (~> 3.12)
   rack-cors
   rails (~> 5.2.3)
   rspec-rails (~> 3.8)
